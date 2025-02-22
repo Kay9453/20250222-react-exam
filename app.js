@@ -10,8 +10,9 @@ function App() {
 
   const [products, setProducts] = React.useState([]);
 
-
   const [productCategory, setProductCategory] = React.useState([]);
+
+  const [ seleted, setSelected] = React.useState("");
 
   // console.log(productCategory);
   
@@ -50,13 +51,16 @@ function App() {
           />
         <select
           className="p-2 border rounded-md"
-          value={''}
-          onChange={() => {}}
+          value={seleted}
+          onChange={(e) => {
+            setSelected(e.target.value);
+            //filterProduct(e.target.value);
+          }}
           >
             {
               productCategory.map((item)=>{
                 return(
-                    <option value={item}>
+                    <option key={item} value={item}>
                       {item}
                     </option>
                   
@@ -68,7 +72,7 @@ function App() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {
-          products.map((product)=>{
+          products.filter((product)=>seleted ? product.category === seleted: true ).map((product)=>{
             return(
               <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
                 <div className="relative overflow-hidden">
