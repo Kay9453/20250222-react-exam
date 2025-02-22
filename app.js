@@ -14,6 +14,8 @@ function App() {
 
   const [ seleted, setSelected] = React.useState("");
 
+  const [ keyword, setKeyword] = React.useState("");
+
   // console.log(productCategory);
   
 
@@ -46,8 +48,8 @@ function App() {
           type="text"
           placeholder="搜尋產品..."
           className="p-2 border rounded-md flex-grow"
-          value={''}
-          onChange={() => {}}
+          value={keyword}
+          onChange={(e) => {setKeyword(e.target.value)}}
           />
         <select
           className="p-2 border rounded-md"
